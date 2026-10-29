@@ -1,0 +1,5 @@
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; margin: 0; }
+body { min-width: 320px; }
+button { font: inherit; }
+::selection { background: #e7d2a3; color: #4a1024; }

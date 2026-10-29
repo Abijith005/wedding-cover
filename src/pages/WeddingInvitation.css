@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@400;500&display=swap');
+.invitation-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 30px 18px;
+  background: linear-gradient(135deg, #e9ddc7, #fffaf0 52%, #e5d5bd);
+  color: #654b35;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+.invitation-paper {
+  position: relative;
+  width: min(100%, 680px);
+  padding: clamp(44px, 8vw, 80px) clamp(25px, 8vw, 75px);
+  text-align: center;
+  background: #fffdf7;
+  border: 1px solid #d6c29a;
+  outline: 1px solid rgba(181, 143, 70, .45);
+  outline-offset: -12px;
+  box-shadow: 0 25px 70px rgba(73, 43, 29, .16);
+}
+.invitation-kicker, .invitation-label {
+  font: 500 10px "Montserrat", sans-serif;
+  letter-spacing: 3px;
+  color: #927a4c;
+}
+.invitation-flourish { margin: 24px 0; color: #b88b42; font-size: 25px; }
+.invitation-paper h1 { margin: 0; color: #781f36; font-size: clamp(40px, 9vw, 68px); font-weight: 500; }
+.invitation-paper h1 span { color: #c5a15b; font-family: "Great Vibes", cursive; }
+.invitation-intro, .invitation-note { max-width: 440px; margin: 24px auto; font-size: 20px; line-height: 1.6; font-style: italic; }
+.invitation-rule { width: 80px; height: 1px; margin: 30px auto; background: #c5a15b; }
+.invitation-label { margin-top: 0; }
+.invitation-date { margin: 14px 0 5px; color: #781f36; font-size: 27px; }
+.invitation-place { margin: 0; font-size: 21px; }
+.invitation-note { margin-top: 30px; }
+.back-link { display: inline-block; margin-top: 15px; color: #781f36; font: 11px "Montserrat", sans-serif; text-decoration-color: #c5a15b; text-underline-offset: 5px; }

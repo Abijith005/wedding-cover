@@ -1,0 +1,899 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+:root {
+  --ivory: #fffaf0;
+  --gold: #c5a15b;
+  --burgundy: #781f36;
+}
+
+/* ===== Wedding garden background ===== */
+
+.wedding-cover {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 40px 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #543c2b;
+  font-family: "Cormorant Garamond", Georgia, serif;
+
+  /* Fallback if the background photo is unavailable */
+  background: linear-gradient(
+    135deg,
+    #d9c6a5,
+    #f8edda 48%,
+    #a69b79
+  );
+}
+
+.wedding-cover *,
+.wedding-cover *::before,
+.wedding-cover *::after {
+  box-sizing: border-box;
+}
+
+/*
+  Place your wedding garden photo at:
+  public/assets/wedding-garden-bg.jpg
+*/
+.cover-background {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+
+  background-image: url("/assets/wedding-garden-bg.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  transform: scale(1.025);
+}
+
+/* Soft overlay to keep the card prominent */
+.cover-overlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(44, 39, 25, 0.04) 0%,
+      rgba(67, 49, 29, 0.02) 42%,
+      rgba(45, 37, 25, 0.24) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 244, 217, 0.08),
+      transparent 45%,
+      rgba(255, 244, 217, 0.04)
+    );
+  pointer-events: none;
+}
+
+.cover-glow {
+  position: absolute;
+  z-index: -1;
+  top: -15%;
+  left: 50%;
+  width: min(90vw, 750px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 230, 174, 0.3) 0%,
+    rgba(255, 242, 213, 0.12) 40%,
+    transparent 70%
+  );
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+/* Fine frame around the whole scene */
+.wedding-cover::before {
+  position: absolute;
+  z-index: 5;
+  inset: 12px;
+  border: 1px solid rgba(255, 245, 219, 0.42);
+  content: "";
+  pointer-events: none;
+}
+
+/* ===== Layout ===== */
+
+.cover-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ===== Physical invitation card ===== */
+
+.cover-card {
+  position: relative;
+  width: min(72vw, 390px);
+  perspective: 1600px;
+  transform: perspective(1400px) rotateX(5deg) rotateZ(-7deg);
+  transform-origin: center center;
+
+  /* Natural shadow cast onto the stone surface */
+  filter: drop-shadow(
+    20px 28px 19px rgba(37, 27, 17, 0.32)
+  );
+
+  transition: filter 0.8s ease;
+}
+
+.card-border {
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #e0cfa8;
+  border-radius: 2px;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 10%,
+      rgba(255, 255, 255, 0.85),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #fffef9 0%,
+      #fffaf0 62%,
+      #f5ead5 100%
+    );
+
+  box-shadow:
+    0 1px 2px rgba(59, 38, 20, 0.16),
+    0 0 0 4px rgba(255, 251, 240, 0.85),
+    inset 0 0 0 7px #fffaf0,
+    inset 0 0 0 8px rgba(197, 161, 91, 0.4);
+
+  transition:
+    transform 1s ease,
+    opacity 0.8s ease,
+    box-shadow 0.8s ease;
+}
+
+/* Inner gold border */
+.card-border::before {
+  position: absolute;
+  z-index: 6;
+  inset: 16px;
+  border: 1px solid rgba(197, 161, 91, 0.68);
+  content: "";
+  pointer-events: none;
+}
+
+/* ===== Names in upper-right section ===== */
+
+.card-content {
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  right: 17px;
+  left: 43%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: center;
+
+  transition:
+    transform 0.8s ease,
+    opacity 0.6s ease;
+}
+
+.card-small-title {
+  color: #927a4c;
+  font-family: "Montserrat", sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+
+.floral-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 19px 0 17px;
+  color: var(--gold);
+}
+
+.divider-line {
+  width: 27px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 100%;
+  margin: 0;
+
+  color: var(--burgundy);
+  font-family: "Allura", cursive;
+  font-size: clamp(28px, 3.4vw, 38px);
+  font-weight: 400;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+.couple-names > span {
+  max-width: 100%;
+}
+
+.ampersand {
+  margin: 2px 0;
+  color: var(--gold);
+  font-family: "Allura", cursive;
+  font-size: 27px;
+  line-height: 1;
+}
+
+/* ===== Card corner ornaments ===== */
+
+.card-corner {
+  position: absolute;
+  z-index: 1;
+  color: rgba(173, 139, 76, 0.68);
+  font-size: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.top-left {
+  top: 24px;
+  left: 25px;
+  transform: rotate(-45deg);
+}
+
+.top-right {
+  top: 24px;
+  right: 25px;
+  transform: rotate(45deg) scaleX(-1);
+}
+
+.bottom-left {
+  bottom: 24px;
+  left: 25px;
+  transform: rotate(-135deg);
+}
+
+.bottom-right {
+  right: 25px;
+  bottom: 24px;
+  transform: rotate(135deg) scaleX(-1);
+}
+
+/* ===== Vertical ribbon ===== */
+
+.ribbon-vertical {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 29%;
+  width: 56px;
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  transition:
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s ease;
+}
+
+.ribbon-vertical img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* ===== Horizontal ribbon ===== */
+
+.ribbon-horizontal {
+  position: absolute;
+  z-index: 2;
+  top: 52%;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  overflow: hidden;
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s ease;
+}
+
+.ribbon-horizontal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* ===== Satin bow ===== */
+
+.gift-bow {
+  position: absolute;
+  z-index: 3;
+  top: 52%;
+  left: 29%;
+  width: 155px;
+  height: 125px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.gift-bow img {
+  position: absolute;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 3px rgba(40, 10, 15, 0.18));
+}
+
+.bow-loop {
+  top: 12px;
+  width: 49%;
+  transition:
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.6s ease;
+}
+
+.bow-loop-left {
+  left: 0;
+  transform-origin: 85% 80%;
+}
+
+.bow-loop-right {
+  right: 0;
+  transform-origin: 15% 80%;
+}
+
+.bow-tail {
+  top: 44px;
+  width: 30%;
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s ease;
+}
+
+.bow-tail-left {
+  left: 26%;
+  transform-origin: top center;
+}
+
+.bow-tail-right {
+  right: 26%;
+  transform-origin: top center;
+}
+
+.bow-knot {
+  z-index: 2;
+  top: 25px;
+  left: 50%;
+  width: 23%;
+  transform: translateX(-50%);
+  transition:
+    transform 0.45s ease,
+    opacity 0.35s ease;
+}
+
+/* ===== Wax seal ===== */
+
+.wax-seal {
+  position: absolute;
+  z-index: 5;
+  top: 52%;
+  left: 29%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+}
+
+.wax-seal-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.wax-seal:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.06) rotate(-3deg);
+  filter: brightness(1.07);
+}
+
+.wax-seal:focus-visible {
+  outline: 3px solid #7a2940;
+  outline-offset: 8px;
+}
+
+.wax-seal:disabled {
+  cursor: default;
+}
+
+/* ===== Opening animation ===== */
+
+.bow-opening .bow-loop-left {
+  transform: translate(-45px, -25px) rotate(-38deg);
+  opacity: 0;
+}
+
+.bow-opening .bow-loop-right {
+  transform: translate(45px, -25px) rotate(38deg);
+  opacity: 0;
+}
+
+.bow-opening .bow-tail-left {
+  transform: translate(-65px, 85px) rotate(-30deg);
+  opacity: 0;
+}
+
+.bow-opening .bow-tail-right {
+  transform: translate(65px, 85px) rotate(30deg);
+  opacity: 0;
+}
+
+.bow-opening .bow-knot {
+  transform: translate(-50%, -35px) scale(0.65);
+  opacity: 0;
+}
+
+.is-opening .ribbon-vertical {
+  transform: translateX(-180%) rotate(-8deg);
+  opacity: 0;
+}
+
+.is-opening .ribbon-horizontal {
+  transform: translate(130%, -50%) rotate(4deg);
+  opacity: 0;
+}
+
+.is-opening .wax-seal {
+  animation: seal-pop 0.45s ease forwards;
+}
+
+.is-opening .card-content {
+  transform: scale(1.04);
+}
+
+.is-opening .card-border {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 35px 70px rgba(43, 29, 17, 0.22);
+}
+
+@keyframes seal-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  45% {
+    transform: translate(-50%, -50%) scale(1.16) rotate(8deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.4) rotate(-18deg);
+    opacity: 0;
+  }
+}
+
+/* ===== Open invitation hint ===== */
+
+.open-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin-top: 38px;
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 249, 232, 0.45);
+  border-radius: 30px;
+
+  background: rgba(61, 47, 31, 0.24);
+  color: #fff8e9;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.open-hint:hover:not(:disabled) {
+  background: rgba(61, 47, 31, 0.38);
+  transform: translateY(-2px);
+}
+
+.open-hint:disabled {
+  cursor: default;
+}
+
+.hint-dot {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f4d28a;
+  box-shadow: 0 0 0 4px rgba(244, 210, 138, 0.2);
+}
+
+/* ===== Tablet ===== */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .cover-card {
+    width: min(66vw, 350px);
+  }
+
+  .card-border {
+    min-height: 450px;
+  }
+
+  .couple-names {
+    font-size: 31px;
+  }
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 480px) {
+  .wedding-cover {
+    padding: 28px 16px;
+  }
+
+  .cover-background {
+    background-position: 43% center;
+  }
+
+  .cover-glow {
+    top: -3%;
+    width: 115vw;
+    filter: blur(28px);
+  }
+
+  .cover-card {
+    width: min(78vw, 315px);
+    transform: perspective(1100px) rotateX(4deg) rotateZ(-6deg);
+    filter: drop-shadow(13px 20px 15px rgba(37, 27, 17, 0.3));
+  }
+
+  .card-border {
+    min-height: 410px;
+  }
+
+  .card-border::before {
+    inset: 13px;
+  }
+
+  .card-content {
+    top: 26px;
+    right: 10px;
+    left: 41%;
+  }
+
+  .card-small-title {
+    font-size: 6px;
+    letter-spacing: 0.9px;
+  }
+
+  .floral-divider {
+    gap: 6px;
+    margin: 15px 0 13px;
+  }
+
+  .divider-line {
+    width: 19px;
+  }
+
+  .couple-names {
+    font-size: clamp(24px, 6.5vw, 29px);
+    line-height: 1.05;
+  }
+
+  .ampersand {
+    font-size: 23px;
+  }
+
+  .card-corner {
+    font-size: 16px;
+  }
+
+  .top-left,
+  .top-right {
+    top: 20px;
+  }
+
+  .bottom-left,
+  .bottom-right {
+    bottom: 20px;
+  }
+
+  .top-left,
+  .bottom-left {
+    left: 20px;
+  }
+
+  .top-right,
+  .bottom-right {
+    right: 20px;
+  }
+
+  .ribbon-vertical {
+    width: 43px;
+  }
+
+  .ribbon-horizontal {
+    height: 47px;
+  }
+
+  .gift-bow {
+    width: 125px;
+    height: 105px;
+  }
+
+  .bow-tail {
+    top: 38px;
+  }
+
+  .bow-knot {
+    top: 21px;
+  }
+
+  .wax-seal {
+    width: 62px;
+    height: 62px;
+  }
+
+  .open-hint {
+    margin-top: 28px;
+    padding: 10px 14px;
+    font-size: 9px;
+  }
+}
+
+/* ===== Extra-small phones ===== */
+
+@media (max-width: 360px) {
+  .wedding-cover {
+    padding: 24px 14px;
+  }
+
+  .cover-card {
+    width: min(78vw, 280px);
+    transform: perspective(1000px) rotateX(3deg) rotateZ(-5deg);
+  }
+
+  .card-border {
+    min-height: 380px;
+  }
+
+  .card-content {
+    top: 23px;
+    right: 8px;
+    left: 40%;
+  }
+
+  .card-small-title {
+    font-size: 5.5px;
+    letter-spacing: 0.65px;
+  }
+
+  .couple-names {
+    font-size: 23px;
+  }
+
+  .ampersand {
+    font-size: 21px;
+  }
+
+  .ribbon-vertical {
+    width: 38px;
+  }
+
+  .ribbon-horizontal {
+    height: 42px;
+  }
+
+  .gift-bow {
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+
+  .wax-seal {
+    width: 56px;
+    height: 56px;
+  }
+
+  .open-hint {
+    margin-top: 24px;
+    font-size: 8px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-card,
+  .card-border,
+  .card-content,
+  .ribbon-vertical,
+  .ribbon-horizontal,
+  .gift-bow img,
+  .wax-seal,
+  .open-hint {
+    transition-duration: 0.15s;
+  }
+
+  .is-opening .wax-seal {
+    animation-duration: 0.15s;
+  }
+}
+
+
+
+/* Christian wedding background */
+.wedding-cover {
+  background: #e8ddc8;
+}
+
+.cover-background {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  background-image: url("/assets/christian-wedding-bg.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.025);
+}
+
+.cover-overlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 248, 233, 0.12) 0%,
+      rgba(71, 48, 30, 0.04) 45%,
+      rgba(45, 35, 25, 0.27) 100%
+    );
+  pointer-events: none;
+}
+
+.cover-glow {
+  position: absolute;
+  z-index: -1;
+  top: -10%;
+  left: 50%;
+  width: min(90vw, 750px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 235, 195, 0.25),
+    transparent 70%
+  );
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+/* Mobile background framing */
+@media (max-width: 480px) {
+  .cover-background {
+    background-position: 50% center;
+  }
+}
+
+/* Warm ivory and champagne wedding background */
+
+.wedding-cover {
+  background: #e8dcc7;
+}
+
+.cover-background {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+
+  background-image: url("/assets/wedding-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transform: scale(1.025);
+}
+
+/* Soft champagne overlay */
+.cover-overlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 248, 232, 0.22),
+      rgba(232, 215, 183, 0.12)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 250, 239, 0.08),
+      rgba(69, 48, 29, 0.18)
+    );
+
+  pointer-events: none;
+}
+
+/* Gentle golden glow */
+.cover-glow {
+  position: absolute;
+  z-index: -1;
+  top: -10%;
+  left: 50%;
+
+  width: min(90vw, 750px);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 165, 0.28) 0%,
+    rgba(255, 242, 216, 0.12) 40%,
+    transparent 70%
+  );
+
+  filter: blur(35px);
+  pointer-events: none;
+}
